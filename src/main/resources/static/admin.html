@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>汇总查询</title>
+    <link href="bui/css/dpl-min.css" rel="stylesheet">
+    <link href="bui/css/bui-min.css" rel="stylesheet">
+    <link href="custom/css/custom-min.css" rel="stylesheet">
+    <style type="text/css">
+        .form-horizontal .control-label {
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+<div class="panel">
+    <div class="panel-header">
+        <span class="panel-search"><i class="icon-query"></i></span>
+        <h3>查询条件</h3>
+        <div class="panel-bar">
+            欢迎您:<span id="welcome"></span>&nbsp;<a href="index.html" class="button button-info">填报页面</a>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <form id="queryForm" class="form-horizontal">
+            <div class="row-fluid">
+                <div class="control-group span6">
+                    <label class="control-label">开发</label>
+                    <select name="developer" type="text" class="input-small">
+                        <option value="">请选择</option>
+                        <option value="侯虎">侯虎</option>
+                        <option value="梁勇">梁勇</option>
+                        <option value="杜威">杜威</option>
+                        <option value="王云浩">王云浩</option>
+                        <option value="郭芳碧">郭芳碧</option>
+                        <option value="路靖忠">路靖忠</option>
+                        <option value="石建华">石建华</option>
+                        <option value="周正荣">周正荣</option>
+                        <option value="刘辉">刘辉</option>
+                        <option value="梁业飞">梁业飞</option>
+                    </select>
+                </div>
+                <div class="control-group span4">
+                    <label class="control-label">任务类型</label>
+                    <div class="controls">
+                        <select name="workType" type="text" class="input-small">
+                            <option value="">请选择</option>
+                            <option value="需求">需求</option>
+                            <option value="BUG">BUG</option>
+                            <option value="咨询答疑">咨询答疑</option>
+                            <option value="线上问题">线上问题</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group span6">
+                    <label class="control-label">填报日期</label>
+                    <div class="controls bui-form-group" data-rules="{dateRange : true}">
+                        <input name="startDate" data-tip="{text : '起始日期'}" data-rules="{required:true}"
+                               data-messages="{required:'起始日期不能为空'}" class="input-small calendar" type="text"
+                               id="startDate"><label>
+                        &nbsp;-&nbsp;</label>
+                        <input name="endDate" data-tip="{text : '截止日期'}" data-rules="{required:true}"
+                               data-messages="{required:'结束日期不能为空'}" class="input-small calendar" type="text"
+                               id="endDate">
+                    </div>
+                </div>
+                <div class="control-group span4">
+                    <label class="control-label">任务状态</label>
+                    <div class="controls">
+                        <select name="status" type="text" class="input-small">
+                            <option value="">请选择</option>
+                            <option value="需求中">需求中</option>
+                            <option value="需求定稿">需求定稿</option>
+                            <option value="设计">设计</option>
+                            <option value="待开发">待开发</option>
+                            <option value="开发中">开发中</option>
+                            <option value="联调测试">联调测试</option>
+                            <option value="已提测">已提测</option>
+                            <option value="测试中">测试中</option>
+                            <option value="UAT测试">UAT测试</option>
+                            <option value="已上线">已上线</option>
+                            <option value="暂停">暂停</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="span3">
+                    <button type="button" id="btnSearch" class="button button-query">查询</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel">
+    <div class="panel-header">
+        <span class="panel-result"><i class="icon-result"></i></span>
+        <h3>查询结果</h3>
+        <div class="panel-bar ">
+            <button id="download" type="button" class="button button-query">下载</button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div id="grid"></div>
+    </div>
+</div>
+
+
+<!-- bui 脚本库引入 ，使用loader按需加载模式 -->
+<script type="text/javascript" src="bui/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="bui/js/seed-min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/admin.js"></script>
+</body>
+</html>

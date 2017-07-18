@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>工时填报</title>
+    <link href="bui/css/dpl-min.css" rel="stylesheet">
+    <link href="bui/css/bui-min.css" rel="stylesheet">
+    <link href="custom/css/custom-min.css" rel="stylesheet">
+    <style type="text/css">
+        .form-horizontal .control-label {
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+<div class="panel">
+    <div class="panel-header">
+        <span class="panel-search"><i class="icon-query"></i></span>
+        <h3>查询条件</h3>
+        <div class="panel-bar">
+            欢迎您:<span id="welcome"></span>&nbsp;<a href="admin.html" class="button button-info">管理页面</a>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <form id="queryForm" class="form-horizontal">
+            <div class="row-fluid">
+                <div class="control-group span4">
+                    <label class="control-label">开发</label>
+                    <div class="controls">
+                        <input name="developer" type="text" class="input-small control-text" id="developer">
+                    </div>
+                </div>
+                <div class="control-group span4">
+                    <label class="control-label">任务类型</label>
+                    <div class="controls">
+                        <input name="codeType" type="text"
+                               class="input-small control-text">
+                    </div>
+                </div>
+                <div class="control-group span6">
+                    <label class="control-label">填报日期</label>
+                    <div class="controls bui-form-group" data-rules="{dateRange : true}">
+                        <input name="startDate" data-tip="{text : '起始日期'}" data-rules="{required:true}"
+                               data-messages="{required:'起始日期不能为空'}" class="input-small calendar" type="text" id="startDate"><label>
+                        &nbsp;-&nbsp;</label>
+                        <input name="endDate" data-tip="{text : '截止日期'}" data-rules="{required:true}"
+                               data-messages="{required:'结束日期不能为空'}" class="input-small calendar" type="text" id="endDate">
+                    </div>
+                </div>
+                <div class="span3">
+                    <button type="button" id="btnSearch" class="button button-query">查询</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span16">
+        <div class="panel">
+            <div class="panel-header">
+                <span class="panel-result"><i class="icon-result"></i></span>
+                <h3>查询结果</h3>
+            </div>
+            <div class="panel-body">
+                <div id="grid"></div>
+            </div>
+        </div>
+    </div>
+    <div class="span8">
+        <div class="panel">
+            <div class="panel-header">
+                <span class="panel-result"><i class="icon-result"></i></span>
+                <h3>系统信息</h3>
+                <div class="panel-bar ">
+                    <button id="add" type="button" class="button button-query">新增</button>
+                    <button id="edit" type="button" class="button button-primary">编辑</button>
+                    <button id="delete" type="button" class="button button-danger">删除</button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form id="codeForm" class="form-horizontal">
+                    <div class="row-fluid">
+                        <div class="control-group">
+                            <label class="control-label"><s>*</s>周报类型</label>
+                            <div class="controls">
+                                <select name='type' data-rules='{required:true}'
+                                        class='input-normal'>
+                                    <option value='本周工作'>本周工作</option>
+                                    <option value='下周计划'>下周计划</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">任务类型</label>
+                            <div class="controls">
+                                <select name="workType" type="text" class="input-normal">
+                                    <option value="需求">需求</option>
+                                    <option value="BUG">BUG</option>
+                                    <option value="咨询答疑">咨询答疑</option>
+                                    <option value="线上问题">线上问题</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><s>*</s>所属项目</label>
+                            <div class="controls">
+                                <select class="input-normal" name="projectId" id="projectId"></select>
+                                <input name="newProject" type="text" class="input-small hide">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><s>*</s>工作内容</label>
+                            <div class="controls">
+                                <textarea name="workContent"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><s>*</s>进度(%)</label>
+                            <div class="controls">
+                                <input name="process" type="text" class="input-normal"
+                                       data-rules='{required:true,number:true,max:100,min:0}'>%
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">任务状态</label>
+                            <div class="controls">
+                                <select name="status" type="text" class="input-normal">
+                                    <option value="需求中">需求中</option>
+                                    <option value="需求定稿">需求定稿</option>
+                                    <option value="设计">设计</option>
+                                    <option value="待开发">待开发</option>
+                                    <option value="开发中">开发中</option>
+                                    <option value="联调测试">联调测试</option>
+                                    <option value="已提测">已提测</option>
+                                    <option value="测试中">测试中</option>
+                                    <option value="UAT测试">UAT测试</option>
+                                    <option value="已上线">已上线</option>
+                                    <option value="暂停">暂停</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">备注</label>
+                            <div class="controls">
+                                <textarea name="remark"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="form-actions ">
+                            <button type="button" id="btnSave" class="button button-query">保存</button>
+                            <button type="button" id="btnReset" class="button button-reset ">取消</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- bui 脚本库引入 ，使用loader按需加载模式 -->
+<script type="text/javascript" src="bui/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="bui/js/seed-min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
