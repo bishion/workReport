@@ -4,7 +4,8 @@
 2. JSON:fastjson; mail:javamail; excel:poi; task:Scheduled;
 ## 功能
 ### 单点登录
-需要自己接入自己公司的单点登录。在Application中配置FilterRegistrationBean
+需要自己接入自己公司的单点登录。在Application中配置FilterRegistrationBean  
+如果没有，这个Bean需要注释掉才能启动
 ### 周报填写
 1. index.html是默认首页，填写自己本周的工作量
 2. 每人只能填写和修改自己的工作量，但是可以查看别人的记录
